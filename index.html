@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Noor 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: #fff1f5;
+  color: #754456;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  padding: 45px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+button {
+  border: none;
+  padding: 14px 32px;
+  margin: 12px;
+  border-radius: 30px;
+  background: #e88eac;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background: #d96d91;
+}
+
+#no {
+  background: #c9a7b4;
+}
+
+.hidden {
+  display: none;
+}
+
+.heart {
+  font-size: 45px;
+  animation: beat 1s infinite alternate;
+}
+
+@keyframes beat {
+  to { transform: scale(1.2); }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 600px;
+  width: 100%;
+  margin: 25px auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 5px 15px #d9a6b6;
+}
+
+.message {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 22px;
+  max-width: 650px;
+  width: 100%;
+  line-height: 2;
+  box-shadow: 0 5px 25px #edc9d5;
+  text-align: left;
+}
+
+.message h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 22px;
+  color: #d66e91;
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  font-size: 22px;
+  animation: fall 5s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+<section id="welcome">
+  <div class="heart">💗</div>
+  <h1>Are you Noor?</h1>
+  <p>Someone has a little surprise for you...</p>
+
+  <h2 style="margin-top:35px;">
+    Is today your birthday? 🎂
+  </h2>
+
+  <div>
+    <button onclick="yes()">YES 💕</button>
+    <button id="no" onclick="no()">NO 🙈</button>
+  </div>
+
+  <p id="noMessage"></p>
+</section>
+
+<!-- BIRTHDAY SCREEN -->
+<section id="birthday" class="hidden">
+  <div class="heart">🎀</div>
+  <h1>HAPPY BIRTHDAY NOOR!</h1>
+  <p>A little website, made with lots of love.</p>
+  <p>Today is all about YOU! 💗</p>
+  <button onclick="showMemories()">
+    Open your surprise ✨
+  </button>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="hidden">
+  <h1>Our Little Memories 📸</h1>
+  <p>Some moments I wish I could relive...</p>
+
+  <div class="gallery">
+    <!-- Replace these with your photo filenames -->
+    <img src="photo1.jpg" alt="Our memory 1">
+    <img src="photo2.jpg" alt="Our memory 2">
+    <img src="photo3.jpg" alt="Our memory 3">
+    <img src="photo4.jpg" alt="Our memory 4">
+  </div>
+
+  <button onclick="showLetter()">
+    One last thing... 💌
+  </button>
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="hidden">
+  <div class="message">
+    <h2>Dear Noor 💗</h2>
+
+    <p>
+      Remember last year? We were together, laughing in our
+      classrooms, sharing little moments, making memories and
+      enjoying the simplest things.
+    </p>
+
+    <br>
+
+    <p>
+      I never thought that one day we would be studying in
+      different places and wouldn't get to experience those
+      everyday moments together anymore.
+    </p>
+
+    <br>
+
+    <p>
+      Things have changed, and even though we aren't studying
+      together now, I still find myself remembering those days.
+      Sometimes I miss those random laughs, our classroom
+      memories and the time we spent together.
+    </p>
+
+    <br>
+
+    <p>
+      I genuinely miss you, Noor. I hope you know that distance
+      and different paths don't make the memories any less
+      special. You will always be someone I remember with a smile.
+    </p>
+
+    <br>
+
+    <p>
+      On your special day, I wish you endless happiness, success,
+      good health and all the beautiful things life has to offer.
+      May you achieve everything you've ever dreamed of.
+    </p>
+
+    <br>
+
+    <p>
+      Keep being the wonderful person you are.
+    </p>
+
+    <br>
+
+    <h2>Happy Birthday to my princess! 👑💗</h2>
+
+    <footer>
+      With lots of love and best wishes ♡
+    </footer>
+  </div>
+</section>
+
+<script>
+function hideAll() {
+  document.querySelectorAll("section").forEach(section => {
+    section.classList.add("hidden");
+  });
+}
+
+function yes() {
+  hideAll();
+  document.getElementById("birthday").classList.remove("hidden");
+  startConfetti();
+}
+
+function no() {
+  document.getElementById("noMessage").innerText =
+    "Hmm... I think someone is pretending! 🙈 Try YES!";
+}
+
+function showMemories() {
+  hideAll();
+  document.getElementById("memories").classList.remove("hidden");
+}
+
+function showLetter() {
+  hideAll();
+  document.getElementById("letter").classList.remove("hidden");
+}
+
+function startConfetti() {
+  const symbols = ["💗", "💕", "✨", "🌸", "🎀"];
+
+  for (let i = 0; i < 35; i++) {
+    const item = document.createElement("div");
+    item.className = "confetti";
+    item.innerText =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDelay = Math.random() * 4 + "s";
+
+    document.body.appendChild(item);
+  }
+}
+</script>
+
+</body>
+  </html>
+  
